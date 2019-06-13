@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title>lectures</title>
+</h:head>
+<h:body>
+<div>browse lectures</div>
+<h:form>
+<p:tabMenu activeIndex="#{param.i}">
+    <p:menuitem value="Overview" url="dashboard.xhtml"  icon="pi pi-star">
+        <f:param name="i" value="0" />
+    </p:menuitem>
+    <p:menuitem value="add lectures" url="add_lectures.xhtml"  icon="pi pi-star">
+        <f:param name="i" value="1" />
+    </p:menuitem>
+    <p:menuitem value="browse lectures" url="browse_lectures.xhtml"  icon="pi pi-star">
+        <f:param name="i" value="2" />
+    </p:menuitem>
+</p:tabMenu>
+<div>
+		<h3>Filter lectures</h3>
+		<p:outputLabel value="Title:" for="titleFilter" />
+        <p:autoComplete id="titleFilter" value="#{browseView.title}" completeMethod="#{browseView.getTitlesAutocomplete}" />
+        
+        <p:outputLabel value="Author:" for="authorFilter" />
+        <p:autoComplete id="authorFilter" value="#{browseView.author}" completeMethod="#{browseView.getAuthorsAutocomplete}" />
+        
+        <p:outputLabel for="publishDate" value="Publish Date:" />
+        <p:calendar id="publishDate" pattern="dd/MM/yyyy	" value="#{browseView.publishDate}" effect="fold" showOn="button" />
+        
+        <p:commandButton value="Apply filters" action="#{browseView.applyFilters}" update="@form" />
+       	
+    	<p:tabView orientation="left" value="#{browseView.lectures}" var="lecture">
+
+	   		 
+	   		 <p:tab title="#{lecture.title}">
+	   		  <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage height="200" width="200" url="#{lecture.pictureUrl}" />
+                <h:outputText
+                    value="#{lecture.text}" />
+                	<span>Author: #{lecture.author}</span>
+                	<br />
+					<span>Date: #{lecture.publishDateStr}</span>
+					</h:panelGrid>
+	   		</p:tab>	
+	   	</p:tabView>
+</div>
+</h:form>
+</h:body>
+</html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>lectures publisher</title>
+		<style type="text/css">
+            .ui-panel, div.ui-state-hover {
+                margin: 10px;
+                width:200px;
+            }
+             
+            .ui-dashboard-column {
+                width:220px;
+            }
+        </style>
+</h:head>
+<h:body>
+
+
+ 
+<div> dashboard </div> 
+ 
+<h:form>
+<p:tabMenu activeIndex="#{param.i}">
+    <p:menuitem value="Overview" url="dashboard.xhtml"  icon="pi pi-star">
+        <f:param name="i" value="0" />
+    </p:menuitem>
+    <p:menuitem value="add lectures" url="add_lectures.xhtml"  icon="pi pi-star">
+        <f:param name="i" value="1" />
+    </p:menuitem>
+    <p:menuitem value="browse lectures" url="browse_lectures.xhtml"  icon="pi pi-star">
+        <f:param name="i" value="2" />
+    </p:menuitem>
+</p:tabMenu>
+</h:form>
+<div>
+<p:galleria value="#{imagesView.images}" var="image" panelWidth="500" panelHeight="500" showCaption="true">
+    <p:graphicImage name="images/#{image}" alt="Lectures image #{image}" title="#{image}"/>
+</p:galleria>
+</div>
+</h:body>
+</html>

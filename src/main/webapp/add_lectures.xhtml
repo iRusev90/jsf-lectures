@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>lectures</title>
+</h:head>
+<h:body>
+	<div>add lectures</div>
+<h:form>
+<p:tabMenu activeIndex="#{param.i}">
+    <p:menuitem value="Overview" url="dashboard.xhtml"  icon="pi pi-star">
+        <f:param name="i" value="0" />
+    </p:menuitem>
+    <p:menuitem value="add lectures" url="add_lectures.xhtml"  icon="pi pi-star">
+        <f:param name="i" value="1" />
+    </p:menuitem>
+    <p:menuitem value="browse lectures" url="browse_lectures.xhtml"  icon="pi pi-star">
+        <f:param name="i" value="2" />
+    </p:menuitem>
+</p:tabMenu>
+</h:form>
+
+<h:form>
+    <p:growl id="growl" showDetail="true" sticky="true" />  
+    <h:panelGrid columns="2" cellpadding="5">
+        <p:outputLabel for="title" value="Title: " />
+        <p:inputText id="title" value="#{addView.lecture.title}"/>
+ 
+ 
+   		<p:outputLabel for="author" value="Author: " />
+        <p:inputText id="author" value="#{addView.lecture.author}"/>
+        
+        
+        <p:outputLabel for="pictureUrl" value="Picture url: " />
+        <p:inputText id="pictureUrl" value="#{addView.lecture.pictureUrl}"/>
+        
+        <p:outputLabel for="text" value="Content: " />
+        <p:inputTextarea id="text" value="#{addView.lecture.text}"/>
+        
+       
+        <p:commandButton value="Reset" type="reset" />
+    	<p:commandButton value="Save" action="#{addView.save}" update="@form"/>
+    </h:panelGrid>
+
+ </h:form>
+</h:body>
+</html>
